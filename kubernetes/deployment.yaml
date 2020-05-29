@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: babaria-demo
+spec:
+  selector:
+    app: babaria-demo
+  ports:
+    - port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: babaria-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: babaria-demo
+  template:
+    metadata:
+      labels:
+        app: babaria-demo
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: app
+          image: tirthbodawala/demo:version-1.0.0
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
