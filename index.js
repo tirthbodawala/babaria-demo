@@ -11,7 +11,7 @@ const stupidRandomGenrator = function() {
 }
 
 app.get('/', function (req, res) {
-  res.send('hello world');
+  res.send('Hello, World!');
 });
 
 app.get('/compute', function (req, res) {
